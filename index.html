@@ -16,15 +16,15 @@
 <style>
 :root {
   color-scheme: light;
-  --page: #ffffff;
-  --ink: #1b2330;
-  --ink-2: #34445a;
-  --ink-3: #7b8a9c;
-  --rule: #d3dbe4;
-  --rule-2: #b5c1cf;
-  --tone: #2c3e57;
-  --tone-2: #5a7090;
-  --wash: #edf1f6;
+  --page: #f8f8f5;
+  --ink: #1d231f;
+  --ink-2: #37443c;
+  --ink-3: #77837b;
+  --rule: #dde2db;
+  --rule-2: #c1cbc1;
+  --tone: #2e4a3a;
+  --tone-2: #698173;
+  --wash: #eaefe9;
   --serif: 'Libre Baskerville', 'Noto Serif KR', Georgia, serif;
   --sans: 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
@@ -55,7 +55,7 @@ body.lang-en [lang="ko"] { display: none !important; }
 .topbar {
   position: fixed; inset: 0 0 auto 0; z-index: 50;
   height: 60px;
-  background: rgba(248, 250, 252, .97);
+  background: rgba(241, 241, 236, .97);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 2px solid var(--tone);
@@ -98,7 +98,7 @@ h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.6rem, 4.5vw
 .hr { width: 48px; height: 2px; background: var(--tone-2); margin-bottom: 22px; }
 .bio { font-size: 1.12rem; font-weight: 400; line-height: 1.7; letter-spacing: -.01em; color: var(--ink); max-width: none; }
 .interests-label { font: .65rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 22px 0 8px; }
-.interests { list-style: none; margin: 0; padding: 0; max-width: 600px; }
+.interests { list-style: none; margin: 0; padding: 0; max-width: none; }
 .interests li { position: relative; padding-left: 18px; font-size: .86rem; line-height: 1.8; color: var(--ink-2); margin-bottom: 6px; }
 .interests li::before { content: "–"; position: absolute; left: 0; color: var(--tone-2); }
 .interests b { font-weight: 500; color: var(--ink); }
@@ -109,7 +109,8 @@ h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.6rem, 4.5vw
 .contacts dd { margin: 0; font: .78rem/1.8 var(--mono); color: var(--ink-2); }
 .contacts a { text-decoration: none; }
 .contacts a:hover { text-decoration: underline; }
-.buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.buttons { display: grid; grid-template-columns: repeat(2, max-content); gap: 10px; }
+.buttons .btn { justify-content: center; }
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
   font: .72rem/1 var(--mono); letter-spacing: .04em; color: var(--tone);
@@ -142,22 +143,25 @@ h2 { font-family: var(--serif); font-weight: 700; font-size: 1.65rem; line-heigh
 .pub-year { display: flex; align-items: center; gap: 14px; font: .8rem/1 var(--mono); letter-spacing: .08em; color: var(--tone-2); margin: 34px 0 14px; }
 .pub-year::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
 .head + .pub-year { margin-top: 0; }
+.pub-year.review { margin-top: 64px; }
 .pub {
   border: 1px solid var(--rule); border-left: 4px solid var(--tone);
   padding: 22px 24px; margin-bottom: 12px;
   transition: border-color .2s, box-shadow .2s;
 }
-.pub:hover { border-left-color: var(--tone-2); box-shadow: 0 2px 16px rgba(27, 35, 48, .07); }
+.pub:hover { border-left-color: var(--tone-2); box-shadow: 0 2px 16px rgba(29, 35, 31, .07); }
+.pub.pending { border-left-color: var(--rule-2); }
 .pub-title { font-family: var(--serif); font-size: .96rem; line-height: 1.55; color: var(--ink); margin-bottom: 10px; }
 .pub-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.badge { font: .62rem/1 var(--mono); letter-spacing: .07em; padding: 4px 9px; background: var(--tone); color: #fff; flex: none; }
-.badge.alt { background: var(--tone-2); }
+.badge { font: .62rem/1 var(--mono); letter-spacing: .07em; padding: 4px 9px; background: #27406b; color: #fff; flex: none; }
+.badge.alt { background: #e9eef6; color: #27406b; border: 1px solid #b9c7dc; padding: 3px 8px; }
 .badge.q1 { background: transparent; color: var(--tone); border: 1px solid var(--tone); padding: 3px 8px; }
 .badge.if { background: transparent; color: var(--ink-2); border: 1px solid var(--rule-2); padding: 3px 8px; }
 .badge.top { background: #faf4e6; color: #8a6a1f; border: 1px solid #d9c08a; padding: 3px 8px; }
 .pub-authors { font: .75rem/1.6 var(--mono); color: var(--ink-3); margin-top: 6px;  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; }
 .pub-authors .doi { margin-left: auto; white-space: nowrap; }
 .pub-authors b { color: var(--ink); font-weight: 600; }
+.corr { font-family: var(--sans); font-size: .95em; font-weight: 500; line-height: 0; vertical-align: super; margin: 0 1px; }
 .pub-authors a { color: var(--tone-2); text-decoration: none; }
 .pub-authors a:hover { text-decoration: underline; }
 .pub-src i { font-style: italic; color: var(--ink-2); }
@@ -188,9 +192,15 @@ h2 { font-family: var(--serif); font-weight: 700; font-size: 1.65rem; line-heigh
 .award-year { font: .72rem/1.5 var(--mono); letter-spacing: .04em; color: var(--tone-2); }
 .award-name { font-size: .88rem; font-weight: 400; line-height: 1.5; color: var(--ink); }
 .award-org { font: .7rem/1.5 var(--mono); color: var(--ink-3); text-align: right; white-space: nowrap; }
-.news-link { color: var(--ink); text-decoration: none; }
+.news-link { color: var(--tone); text-decoration: underline; text-decoration-color: var(--rule-2); text-underline-offset: 4px; }
+.news-link::after { content: " ↗"; font-size: .85em; color: var(--tone-2); }
 .news-link:hover { color: var(--tone-2); text-decoration: underline; text-underline-offset: 3px; }
 .news-tag { margin-left: 6px; font: .62rem/1 var(--mono); letter-spacing: .06em; color: var(--tone-2); border: 1px solid var(--rule-2); padding: 2px 6px; vertical-align: 1px; }
+.ip { display: grid; grid-template-columns: 52px 1fr; gap: 20px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+.ip:last-child { border-bottom: 0; }
+.ip-cc { font: .66rem/1 var(--mono); letter-spacing: .06em; color: var(--tone); border: 1px solid var(--rule-2); background: var(--wash); padding: 4px 8px; width: fit-content; }
+.ip-title { font-size: .9rem; font-weight: 400; line-height: 1.6; color: var(--ink); }
+.ip-meta { font: .72rem/1.6 var(--mono); color: var(--ink-3); margin-top: 3px; }
 
 footer { border-top: 1px solid var(--rule); }
 .foot { max-width: var(--wrap); margin: 0 auto; padding: 26px var(--pad) 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: .68rem/1.6 var(--mono); color: var(--ink-3); }
@@ -207,6 +217,7 @@ footer { border-top: 1px solid var(--rule); }
   .hero { grid-template-columns: 1fr; gap: 24px; padding-top: 88px; padding-bottom: 56px; }
   .portrait { width: 170px; }
   .bio br { display: none; }
+  .buttons { display: flex; flex-wrap: wrap; }
   .head { flex-wrap: wrap; }
   .head .aside { margin-left: 0; width: 100%; margin-top: 8px; }
   .edu, .proj { grid-template-columns: 1fr; gap: 6px; }
@@ -229,8 +240,9 @@ footer { border-top: 1px solid var(--rule); }
         <a href="#publications"><span lang="ko">논문</span><span lang="en">Publications</span></a>
         <a href="#projects"><span lang="ko">연구</span><span lang="en">Projects</span></a>
         <a href="#awards"><span lang="ko">수상</span><span lang="en">Awards</span></a>
+        <a href="#patents"><span lang="ko">특허</span><span lang="en">Patents</span></a>
+        <a href="#transfer"><span lang="ko">기술이전</span><span lang="en">Transfer</span></a>
         <a href="#news"><span lang="ko">언론</span><span lang="en">News</span></a>
-        <a href="#patents"><span lang="ko">지식재산권</span><span lang="en">IP</span></a>
       </nav>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-set-lang="ko" aria-pressed="true">KO</button>
@@ -257,8 +269,8 @@ footer { border-top: 1px solid var(--rule); }
     <p class="byline"><span lang="ko">Taehyun Park · 공학석사</span><span lang="en">박태현 · M.S. in Computer Engineering</span></p>
     <div class="hr"></div>
 
-    <p class="bio" lang="ko">생성형 AI와 LLM으로 산업 현장의 데이터를 <br>믿을 수 있는 예측과 의사결정으로 바꿉니다.</p>
-    <p class="bio" lang="en">With generative AI and LLMs, I turn industrial field data <br>into trustworthy predictions and decisions.</p>
+    <p class="bio" lang="ko">생성모델과 LLM 에이전트로 산업 현장의 데이터를 <br>믿을 수 있는 예측과 의사결정으로 바꿉니다.</p>
+    <p class="bio" lang="en">With generative models and LLM agents, I turn industrial field data <br>into trustworthy predictions and decisions.</p>
 
     <p class="interests-label"><span lang="ko">연구 관심사</span><span lang="en">Current Interests</span></p>
     <ul class="interests" lang="ko">
@@ -288,12 +300,16 @@ footer { border-top: 1px solid var(--rule); }
     </dl>
 
     <div class="buttons">
-      <a class="btn" href="https://github.com/toddpk">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.160.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.240-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      <a class="btn" href="https://scholar.google.com/citations?user=ewl5TNEAAAAJ" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.82 9.9v3.6L12 20l6.82-3.5v-3.6L12 16.6l-6.82-3.7Z"/></svg>
+        Google Scholar
+      </a>
+      <a class="btn" href="https://github.com/todd-park" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
         GitHub
       </a>
-      <a class="btn" href="https://ksp.etri.re.kr/ksp/user/a0f68599-1eb7-4576-9bcc-e1235f32050a"><span lang="ko">ETRI KSP (석사후연수연구원)</span><span lang="en">ETRI KSP (Post-Master's Researcher)</span></a>
-      <a class="btn" href="https://ksp.etri.re.kr/ksp/user/a979c57c-78ee-4569-8a2b-47d333183a35"><span lang="ko">ETRI KSP (위촉연구원)</span><span lang="en">ETRI KSP (Research Assistant)</span></a>
+      <a class="btn" href="https://ksp.etri.re.kr/ksp/user/a0f68599-1eb7-4576-9bcc-e1235f32050a" target="_blank" rel="noopener"><span lang="ko">ETRI KSP (석사후연수연구원)</span><span lang="en">ETRI KSP (Post-Master's Researcher)</span></a>
+      <a class="btn" href="https://ksp.etri.re.kr/ksp/user/a979c57c-78ee-4569-8a2b-47d333183a35" target="_blank" rel="noopener"><span lang="ko">ETRI KSP (위촉연구원)</span><span lang="en">ETRI KSP (Research Assistant)</span></a>
     </div>
   </div>
 </div>
@@ -367,54 +383,94 @@ footer { border-top: 1px solid var(--rule); }
     <div class="head">
       <span class="no">03</span>
       <h2><span lang="ko">논문</span><span lang="en">Publications</span></h2>
-      <span class="aside"><span lang="ko">* 교신저자 · IF·순위는 JCR 기준</span><span lang="en">* Corresponding author · IF and rank per JCR</span></span>
+      <span class="aside"><span lang="ko"><sup class="corr">*</sup>교신저자 · IF·순위는 JCR 기준</span><span lang="en"><sup class="corr">*</sup>Corresponding author · IF and rank per JCR</span></span>
     </div>
 
     <p class="pub-year">2026</p>
     <article class="pub">
-      <p class="pub-title"><a href="https://doi.org/10.1016/j.csite.2026.108703">Systematic evaluation of exogenous weather-conditioned generative augmentation for greenhouse microclimate time series</a></p>
+      <p class="pub-title"><a href="https://doi.org/10.1016/j.csite.2026.108703" target="_blank" rel="noopener">Systematic evaluation of exogenous weather-conditioned generative augmentation for greenhouse microclimate time series</a></p>
       <div class="pub-meta">
         <span class="badge">SCIE</span><span class="badge if">IF 6.6</span>
         <span class="pub-src"><i>Case Studies in Thermal Engineering</i>, Vol. 88, 108703, 2026</span>
       </div>
-      <p class="pub-authors"><span>Shin, H., <b>Park, T.</b></span><a class="doi" href="https://doi.org/10.1016/j.csite.2026.108703">doi:10.1016/j.csite.2026.108703</a></p>
+      <p class="pub-authors"><span>H. Shin<sup class="corr">*</sup>, <b>T. Park</b></span><a class="doi" href="https://doi.org/10.1016/j.csite.2026.108703" target="_blank" rel="noopener">doi:10.1016/j.csite.2026.108703</a></p>
     </article>
 
     <article class="pub">
-      <p class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2026.3710824">CausalOpsBench: A Reproducible Interventional-Replay Benchmark for Topology-Aware Operational Incident Response</a></p>
+      <p class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2026.3710824" target="_blank" rel="noopener">CausalOpsBench: A Reproducible Interventional-Replay Benchmark for Topology-Aware Operational Incident Response</a></p>
       <div class="pub-meta">
         <span class="badge">SCIE</span><span class="badge if">IF 4.2</span>
         <span class="pub-src"><i>IEEE Access</i>, Vol. 14, pp. 107820–107838, 2026</span>
       </div>
-      <p class="pub-authors"><span>Jang, S., <b>Park, T.</b>, Yi, H., Choi, C.</span><a class="doi" href="https://doi.org/10.1109/ACCESS.2026.3710824">doi:10.1109/ACCESS.2026.3710824</a></p>
+      <p class="pub-authors"><span>S. Jang, <b>T. Park</b>, H. Yi<sup class="corr">*</sup>, C. Choi<sup class="corr">*</sup></span><a class="doi" href="https://doi.org/10.1109/ACCESS.2026.3710824" target="_blank" rel="noopener">doi:10.1109/ACCESS.2026.3710824</a></p>
     </article>
 
     <article class="pub">
-      <p class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2026.3704294">MAD-FORCE: Targeting High-Breakdown Streaming Robust Correlation With Optional Drift Handling</a></p>
+      <p class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2026.3704294" target="_blank" rel="noopener">MAD-FORCE: Targeting High-Breakdown Streaming Robust Correlation With Optional Drift Handling</a></p>
       <div class="pub-meta">
         <span class="badge">SCIE</span><span class="badge if">IF 4.2</span>
         <span class="pub-src"><i>IEEE Access</i>, Vol. 14, pp. 108350–108369, 2026</span>
       </div>
-      <p class="pub-authors"><span>Jang, S., <b>Park, T.</b>, Yi, H., Choi, C.</span><a class="doi" href="https://doi.org/10.1109/ACCESS.2026.3704294">doi:10.1109/ACCESS.2026.3704294</a></p>
+      <p class="pub-authors"><span>S. Jang, <b>T. Park</b>, H. Yi<sup class="corr">*</sup>, C. Choi<sup class="corr">*</sup></span><a class="doi" href="https://doi.org/10.1109/ACCESS.2026.3704294" target="_blank" rel="noopener">doi:10.1109/ACCESS.2026.3704294</a></p>
+    </article>
+
+    <article class="pub">
+      <p class="pub-title">Unconditional Spectral Latent Diffusion for CMP Sensor Time Series Augmentation and Material Removal Rate Prediction</p>
+      <div class="pub-meta">
+        <span class="badge alt">Conference</span>
+        <span class="pub-src"><i>International Conference on Planarization/CMP Technology (ICPT 2026)</i>, Poster P-065, p. 314, 2026</span>
+      </div>
+      <p class="pub-authors"><span><b>T. Park</b>, D. Yun, S.-J. Ra, H. Shin, W. Kim, J. Y. Jung<sup class="corr">*</sup></span></p>
     </article>
 
     <p class="pub-year">2025</p>
     <article class="pub">
-      <p class="pub-title"><a href="https://doi.org/10.1016/j.ijepes.2025.111050">Applicability evaluation of the PID controlled water pump for flow-through aquaculture systems considering tidal variations</a></p>
+      <p class="pub-title"><a href="https://doi.org/10.1016/j.ijepes.2025.111050" target="_blank" rel="noopener">Applicability evaluation of the PID controlled water pump for flow-through aquaculture systems considering tidal variations</a></p>
       <div class="pub-meta">
         <span class="badge">SCIE</span><span class="badge if">IF 5.3</span>
         <span class="pub-src"><i>International Journal of Electrical Power &amp; Energy Systems</i>, Vol. 171, 111050, 2025</span>
       </div>
-      <p class="pub-authors"><span><b>Park, T.</b>, Shin, H.*, Jo, S.-K., Jung, J. Y.</span><a class="doi" href="https://doi.org/10.1016/j.ijepes.2025.111050">doi:10.1016/j.ijepes.2025.111050</a></p>
+      <p class="pub-authors"><span><b>T. Park</b>, H. Shin<sup class="corr">*</sup>, S.-K. Jo, J. Y. Jung</span><a class="doi" href="https://doi.org/10.1016/j.ijepes.2025.111050" target="_blank" rel="noopener">doi:10.1016/j.ijepes.2025.111050</a></p>
     </article>
 
     <article class="pub">
-      <p class="pub-title"><a href="https://doi.org/10.1016/j.aquaculture.2025.742303">Enhancing flow-through aquaculture system monitoring: A comparative study of machine learning algorithms for missing-data imputation</a></p>
+      <p class="pub-title"><a href="https://doi.org/10.1016/j.aquaculture.2025.742303" target="_blank" rel="noopener">Enhancing flow-through aquaculture system monitoring: A comparative study of machine learning algorithms for missing-data imputation</a></p>
       <div class="pub-meta">
         <span class="badge">SCIE</span><span class="badge if">IF 4.4</span><span class="badge top"><span lang="ko">JCR 상위 10%</span><span lang="en">JCR Top 10%</span></span>
         <span class="pub-src"><i>Aquaculture</i>, Vol. 601, 742303, 2025</span>
       </div>
-      <p class="pub-authors"><span>Shin, H.*, <b>Park, T.</b>, Jo, S.-K., Jung, J. Y.</span><a class="doi" href="https://doi.org/10.1016/j.aquaculture.2025.742303">doi:10.1016/j.aquaculture.2025.742303</a></p>
+      <p class="pub-authors"><span>H. Shin<sup class="corr">*</sup>, <b>T. Park</b>, S.-K. Jo, J. Y. Jung</span><a class="doi" href="https://doi.org/10.1016/j.aquaculture.2025.742303" target="_blank" rel="noopener">doi:10.1016/j.aquaculture.2025.742303</a></p>
+    </article>
+
+    <p class="pub-year review"><span lang="ko">심사 중</span><span lang="en">Under Review</span></p>
+    <article class="pub pending">
+      <p class="pub-title">Information priorities for model predictive control of pure-oxygen injection in flow-through aquaculture: Oxygen demand, measurement delay and inlet-water forecasting</p>
+      <div class="pub-meta"><span class="badge if"><span lang="ko">제1저자</span><span lang="en">First author</span></span></div>
+    </article>
+
+    <article class="pub pending">
+      <p class="pub-title">Two-layer graph retrieval for residential energy and indoor environmental data queries: Verification of LLM-generated calculation plans</p>
+      <div class="pub-meta"><span class="badge if"><span lang="ko">제1저자</span><span lang="en">First author</span></span></div>
+    </article>
+
+    <article class="pub pending">
+      <p class="pub-title">Applying regulatory knowledge to industrial sensor data: A stage-wise audit of LLM-mediated screening</p>
+      <div class="pub-meta"><span class="badge if"><span lang="ko">제1저자</span><span lang="en">First author</span></span></div>
+    </article>
+
+    <article class="pub pending">
+      <p class="pub-title">Enforcing guideline applicability windows in LLM-generated query plans for residential monitoring data</p>
+      <div class="pub-meta"><span class="badge if"><span lang="ko">제1저자</span><span lang="en">First author</span></span></div>
+    </article>
+
+    <article class="pub pending">
+      <p class="pub-title">From aquaculture manuals to queryable knowledge: Graph-grounded exact aggregation with open-weight large language models</p>
+      <div class="pub-meta"><span class="badge if"><span lang="ko">제1저자</span><span lang="en">First author</span></span></div>
+    </article>
+
+    <article class="pub pending">
+      <p class="pub-title">External oceanographic conditioning for generative augmentation of flow-through aquaculture water-quality time series: Paradigm evaluation and systematic variable ablation</p>
+      <div class="pub-meta"><span class="badge if"><span lang="ko">제1저자</span><span lang="en">First author</span></span></div>
     </article>
   </section>
 
@@ -423,6 +479,46 @@ footer { border-top: 1px solid var(--rule); }
     <div class="head">
       <span class="no">04</span>
       <h2><span lang="ko">연구 프로젝트</span><span lang="en">Research Projects</span></h2>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2026.05 — <span lang="ko">현재</span><span lang="en">present</span></div>
+        <span class="agency"><span lang="ko">교육부</span><span lang="en">Ministry of Education</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">반도체 CMP 공정용 고선택비·고평탄화 일액형 슬러리 소재 및 AI 공정 제어 시스템 적용에 관한 연구</span><span lang="en">One-Component High-Selectivity, High-Planarization CMP Slurry and Its Application to AI-Based Process Control</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>반도체 CMP 공정용 일액형 슬러리 소재 및 AI 공정 제어 시스템 개발</li>
+          <li>공정 센서 데이터 기반 연마율(MRR) 예측 모델 개발</li>
+          <li>생성형 AI 기반 공정 데이터 증강</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>One-component CMP slurry materials and an AI process-control system</li>
+          <li>Material-removal-rate (MRR) prediction from process sensor data</li>
+          <li>Generative-AI augmentation of process data</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2024.09 — <span lang="ko">현재</span><span lang="en">present</span></div>
+        <span class="agency"><span lang="ko">해양수산부</span><span lang="en">Ministry of Oceans and Fisheries</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">유수식 스마트양식 시스템 개발</span><span lang="en">Development of a Flow-Through Smart Aquaculture System</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>수질·생장·에너지 데이터 통합 스마트양식 플랫폼 개발</li>
+          <li>수질 예측 및 펌프 에너지 최적화 기술 개발</li>
+          <li>운영 매뉴얼·지식그래프 기반 LLM AI 에이전트 개발</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>Smart-aquaculture platform integrating water-quality, growth and energy data</li>
+          <li>Water-quality forecasting and pump-energy optimization</li>
+          <li>LLM-based AI agent built on operation manuals and a knowledge graph</li>
+        </ul>
+      </div>
     </div>
 
     <div class="proj">
@@ -467,26 +563,6 @@ footer { border-top: 1px solid var(--rule); }
 
     <div class="proj">
       <div>
-        <div class="when">2026.05 — <span lang="ko">현재</span><span lang="en">present</span></div>
-        <span class="agency"><span lang="ko">교육부</span><span lang="en">Ministry of Education</span></span>
-      </div>
-      <div>
-        <p class="proj-title"><span lang="ko">반도체 CMP 공정용 고선택비·고평탄화 일액형 슬러리 소재 및 AI 공정 제어 시스템 적용에 관한 연구</span><span lang="en">One-Component High-Selectivity, High-Planarization CMP Slurry and Its Application to AI-Based Process Control</span></p>
-        <ul class="proj-points" lang="ko">
-          <li>반도체 CMP 공정용 일액형 슬러리 소재 및 AI 공정 제어 시스템 개발</li>
-          <li>공정 센서 데이터 기반 연마율(MRR) 예측 모델 개발</li>
-          <li>생성형 AI 기반 공정 데이터 증강</li>
-        </ul>
-        <ul class="proj-points" lang="en">
-          <li>One-component CMP slurry materials and an AI process-control system</li>
-          <li>Material-removal-rate (MRR) prediction from process sensor data</li>
-          <li>Generative-AI augmentation of process data</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="proj">
-      <div>
         <div class="when">2025.01 — 2026.08</div>
         <span class="agency"><span lang="ko">과학기술정보통신부</span><span lang="en">Ministry of Science and ICT</span></span>
       </div>
@@ -507,26 +583,6 @@ footer { border-top: 1px solid var(--rule); }
 
     <div class="proj">
       <div>
-        <div class="when">2024.09 — <span lang="ko">현재</span><span lang="en">present</span></div>
-        <span class="agency"><span lang="ko">해양수산부</span><span lang="en">Ministry of Oceans and Fisheries</span></span>
-      </div>
-      <div>
-        <p class="proj-title"><span lang="ko">유수식 스마트양식 시스템 개발</span><span lang="en">Development of a Flow-Through Smart Aquaculture System</span></p>
-        <ul class="proj-points" lang="ko">
-          <li>수질·생장·에너지 데이터 통합 스마트양식 플랫폼 개발</li>
-          <li>수질 예측 및 펌프 에너지 최적화 기술 개발, 기업 기술이전</li>
-          <li>운영 매뉴얼·지식그래프 기반 LLM AI 에이전트 개발</li>
-        </ul>
-        <ul class="proj-points" lang="en">
-          <li>Smart-aquaculture platform integrating water-quality, growth and energy data</li>
-          <li>Water-quality forecasting and pump-energy optimization, transferred to industry</li>
-          <li>LLM-based AI agent built on operation manuals and a knowledge graph</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="proj">
-      <div>
         <div class="when">2024.09 — 2024.12</div>
         <span class="agency"><span lang="ko">농림축산식품부</span><span lang="en">Ministry of Agriculture, Food and Rural Affairs</span></span>
       </div>
@@ -534,11 +590,11 @@ footer { border-top: 1px solid var(--rule); }
         <p class="proj-title"><span lang="ko">가축질병 실시간 예찰 기술 및 지능형 방역/위생 시스템 개발</span><span lang="en">Real-Time Livestock Disease Surveillance and Intelligent Biosecurity System</span></p>
         <ul class="proj-points" lang="ko">
           <li>행동 영상·소리 분석 기반 가축질병 이상징후 감지 시스템 개발</li>
-          <li>지능형 방역·위생 시스템 연계 및 기업 기술이전</li>
+          <li>지능형 방역·위생 시스템 연계</li>
         </ul>
         <ul class="proj-points" lang="en">
           <li>Livestock-disease anomaly detection from behavior video and sound</li>
-          <li>Integration with an intelligent biosecurity system; technology transfer to industry</li>
+          <li>Integration with an intelligent biosecurity system</li>
         </ul>
       </div>
     </div>
@@ -560,6 +616,7 @@ footer { border-top: 1px solid var(--rule); }
         </ul>
       </div>
     </div>
+
   </section>
 
   <!-- 05 Awards -->
@@ -586,34 +643,92 @@ footer { border-top: 1px solid var(--rule); }
     </div>
   </section>
 
-  <!-- 06 News -->
-  <section id="news">
+  <!-- 06 Patents -->
+  <section id="patents">
     <div class="head">
       <span class="no">06</span>
+      <h2><span lang="ko">특허</span><span lang="en">Patents</span></h2>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">KR</span>
+      <div>
+        <p class="ip-title"><span lang="ko">연마 소모재의 이력을 저장된 RFID 태그를 이용하는 CMP 공정 제어 방법 및 시스템</span><span lang="en">Method and System for Controlling Chemical Mechanical Polishing Process Using RFID Tags That Save History of Abrasive Consumables</span></p>
+        <p class="ip-meta"><span lang="ko">출원</span><span lang="en">Filed</span> 2026.09.29 &nbsp;·&nbsp; 2026-0186101 &nbsp;·&nbsp; <span lang="ko">제1발명자: 정재영</span><span lang="en">1st inventor: Jae Young Jung</span></p>
+      </div>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">KR</span>
+      <div>
+        <p class="ip-title"><span lang="ko">기판의 화학 기계적 연마 공정의 재료제거율을 예측하는 장치 및 방법</span><span lang="en">Apparatus and Method for Predicting Material Removal Rate of Chemical Mechanical Polishing Process of Substrate</span></p>
+        <p class="ip-meta"><span lang="ko">출원</span><span lang="en">Filed</span> 2026.09.15 &nbsp;·&nbsp; 2026-0175840 &nbsp;·&nbsp; <span lang="ko">제1발명자: 라상중</span><span lang="en">1st inventor: Sang Jung Ra</span></p>
+      </div>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">KR</span>
+      <div>
+        <p class="ip-title"><span lang="ko">기판의 화학 기계적 연마 공정 데이터의 분류 기준을 결정하는 장치 및 방법</span><span lang="en">Apparatus and Method for Determining Classification Criterion of Chemical Mechanical Polishing Process Data of Substrate</span></p>
+        <p class="ip-meta"><span lang="ko">출원</span><span lang="en">Filed</span> 2026.09.15 &nbsp;·&nbsp; 2026-0175839 &nbsp;·&nbsp; <span lang="ko">제1발명자: 라상중</span><span lang="en">1st inventor: Sang Jung Ra</span></p>
+      </div>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">KR</span>
+      <div>
+        <p class="ip-title"><span lang="ko">기판의 화학 기계적 연마 공정을 제어하는 장치 및 방법</span><span lang="en">Apparatus and Method for Controlling Chemical Mechanical Polishing Process of Substrate</span></p>
+        <p class="ip-meta"><span lang="ko">출원</span><span lang="en">Filed</span> 2026.09.15 &nbsp;·&nbsp; 2026-0175832 &nbsp;·&nbsp; <span lang="ko">제1발명자: 정재영</span><span lang="en">1st inventor: Jae Young Jung</span></p>
+      </div>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">KR</span>
+      <div>
+        <p class="ip-title"><span lang="ko">거대 언어 모델 기반 자연어 인터페이스를 이용한 스마트 양식 통합 관리 시스템의 장치 및 방법</span><span lang="en">Device and Method for a Smart Aquaculture Integrated Management System Using a Large Language Model-Based Natural Language Interface</span></p>
+        <p class="ip-meta"><span lang="ko">출원</span><span lang="en">Filed</span> 2026.06.16 &nbsp;·&nbsp; 2026-0109576 &nbsp;·&nbsp; <span lang="ko">제1발명자: 신학종</span><span lang="en">1st inventor: Hakjong Shin</span></p>
+      </div>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">KR</span>
+      <div>
+        <p class="ip-title"><span lang="ko">축사 작업자의 행동 인식 방법 및 이를 이용한 축사 관리 자동화 시스템</span><span lang="en">Method for Recognizing Barn Worker Behavior and Automated Barn Management System Using the Same</span></p>
+        <p class="ip-meta"><span lang="ko">출원</span><span lang="en">Filed</span> 2024.12.04 &nbsp;·&nbsp; 2024-0178835 &nbsp;·&nbsp; <span lang="ko">제1발명자: 이현빈</span><span lang="en">1st inventor: Hyunbean Yi</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Technology Transfer -->
+  <section id="transfer">
+    <div class="head">
+      <span class="no">07</span>
+      <h2><span lang="ko">기술이전</span><span lang="en">Technology Transfer</span></h2>
+    </div>
+
+    <div class="ip">
+      <span class="ip-cc">2025</span>
+      <div>
+        <p class="ip-title"><span lang="ko">스마트 양식 시스템 가상 시뮬레이터 기술</span><span lang="en">Virtual Simulator Technology for Smart Aquaculture Systems</span></p>
+        <p class="ip-meta"><span lang="ko">유수식 스마트양식 시스템 개발</span><span lang="en">Development of a Flow-Through Smart Aquaculture System</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 News -->
+  <section id="news">
+    <div class="head">
+      <span class="no">08</span>
       <h2><span lang="ko">언론 보도</span><span lang="en">News</span></h2>
     </div>
 
     <div class="award">
       <div class="award-year">2026</div>
-      <div class="award-name"><a class="news-link" href="https://www.donga.com/news/Economy/article/all/20261030/134941677/2">서울광장에 열린 바다… 스마트 수조- QR코드 이력제 ‘엄지 척’</a> <span class="news-tag"><span lang="ko">인터뷰</span><span lang="en">Interview</span></span></div>
+      <div class="award-name"><a class="news-link" href="https://www.donga.com/news/Economy/article/all/20261030/134941677/2#:~:text=%EA%B0%9C%EB%B0%9C%EC%97%90%20%EC%B0%B8%EC%97%AC%ED%95%9C%20%EB%B0%95%ED%83%9C%ED%98%84">서울광장에 열린 바다… 스마트 수조- QR코드 이력제 ‘엄지 척’</a> <span class="news-tag"><span lang="ko">인터뷰</span><span lang="en">Interview</span></span></div>
       <div class="award-org"><span lang="ko">동아일보</span><span lang="en">The Dong-A Ilbo</span> · 2026.10.31</div>
     </div>
   </section>
 
-  <!-- 07 Intellectual Property (to be filled) -->
-  <section id="patents">
-    <div class="head">
-      <span class="no">07</span>
-      <h2><span lang="ko">지식재산권</span><span lang="en">Intellectual Property</span></h2>
-    </div>
-    <!-- 예시 행 (채울 때 복사해서 사용)
-    <div class="award">
-      <div class="award-year">KR</div>
-      <div class="award-name">발명의 명칭</div>
-      <div class="award-org">출원 YYYY.MM.DD · 출원번호</div>
-    </div>
-    -->
-  </section>
 
 </main>
 
