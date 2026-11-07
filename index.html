@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>박태현 | Taehyun Park</title>
+<meta name="description" content="Taehyun Park (박태현) — ETRI researcher working on time-series forecasting and generative AI for smart aquaculture and semiconductor CMP processes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="박태현 | Taehyun Park">
+<meta property="og:description" content="Time-series forecasting · Generative AI · Smart aquaculture · Semiconductor CMP — ETRI">
+<meta property="og:url" content="https://toddpk.github.io/">
+<meta property="og:image" content="https://toddpk.github.io/photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --page: #ffffff;
+  --ink: #1b2330;
+  --ink-2: #34445a;
+  --ink-3: #7b8a9c;
+  --rule: #d3dbe4;
+  --rule-2: #b5c1cf;
+  --tone: #2c3e57;
+  --tone-2: #5a7090;
+  --wash: #edf1f6;
+  --serif: 'Libre Baskerville', 'Noto Serif KR', Georgia, serif;
+  --sans: 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --wrap: 1120px;
+  --pad: 52px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 18px; scroll-behavior: smooth; scroll-padding-top: 76px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--tone); }
+img { display: block; max-width: 100%; }
+p, figure { margin: 0; }
+
+/* language switch — body itself never carries a lang attribute */
+body:not(.lang-en) [lang="en"] { display: none !important; }
+body.lang-en [lang="ko"] { display: none !important; }
+
+/* ── top bar ── */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  height: 60px;
+  background: rgba(248, 250, 252, .97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--tone);
+}
+.topbar-in {
+  height: 100%; padding: 0 clamp(16px, 2.5vw, 40px);
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.brand { font-family: var(--serif); font-size: 1.05rem; letter-spacing: .02em; color: var(--tone); text-decoration: none; white-space: nowrap; }
+.topbar-right { display: flex; align-items: center; gap: 36px; }
+.menu { display: flex; gap: 24px; }
+.menu a { font-size: .78rem; letter-spacing: .05em; color: var(--ink-2); text-decoration: none; white-space: nowrap; transition: color .2s; }
+.menu a:hover { color: var(--tone-2); }
+.lang { display: flex; border: 1px solid var(--rule-2); border-radius: 3px; overflow: hidden; }
+.lang button {
+  font: 400 .7rem/1 var(--mono); letter-spacing: .08em;
+  padding: 6px 13px; border: 0; background: transparent; color: var(--ink-3); cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--tone); color: #fff; }
+
+/* ── hero ── */
+.hero {
+  max-width: var(--wrap); margin: 0 auto;
+  padding: 104px var(--pad) 80px;
+  display: grid; grid-template-columns: 240px 1fr; gap: 72px; align-items: start;
+}
+.portrait { padding-top: 8px; }
+.portrait img { width: 100%; height: auto; border: 1px solid var(--rule); }
+.affils { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 22px; }
+.affil {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  font: .68rem/1.5 var(--mono); letter-spacing: .05em; color: var(--tone);
+  background: var(--wash); border: 1px solid var(--rule-2);
+  padding: 5px 14px;
+}
+.affil::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--tone-2); flex: none; }
+.affil .dim { color: var(--ink-3); margin-left: 4px; }
+h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.6rem, 4.5vw, 3.6rem); line-height: 1.1; margin: 0 0 4px; color: var(--ink); }
+.byline { font-family: var(--serif); font-style: italic; font-size: 1.05rem; letter-spacing: .01em; color: var(--ink-3); margin-bottom: 26px; }
+.hr { width: 48px; height: 2px; background: var(--tone-2); margin-bottom: 22px; }
+.bio { font-size: 1.12rem; font-weight: 400; line-height: 1.7; letter-spacing: -.01em; color: var(--ink); max-width: none; }
+.interests-label { font: .65rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 22px 0 8px; }
+.interests { list-style: none; margin: 0; padding: 0; max-width: 600px; }
+.interests li { position: relative; padding-left: 18px; font-size: .86rem; line-height: 1.8; color: var(--ink-2); margin-bottom: 6px; }
+.interests li::before { content: "–"; position: absolute; left: 0; color: var(--tone-2); }
+.interests b { font-weight: 500; color: var(--ink); }
+.keywords { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0; padding: 0; list-style: none; }
+.keywords li { font-size: .73rem; padding: 4px 12px; color: var(--tone); background: var(--wash); border: 1px solid var(--rule); border-radius: 2px; }
+.contacts { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: center; margin: 0 0 24px; }
+.contacts dt { font: .65rem/1.8 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.contacts dd { margin: 0; font: .78rem/1.8 var(--mono); color: var(--ink-2); }
+.contacts a { text-decoration: none; }
+.contacts a:hover { text-decoration: underline; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: .72rem/1 var(--mono); letter-spacing: .04em; color: var(--tone);
+  border: 1px solid var(--tone); padding: 8px 18px; text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.btn svg { width: 14px; height: 14px; }
+.btn:hover { background: var(--tone); color: #fff; }
+
+/* ── sections ── */
+main { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad) 120px; }
+section { margin-bottom: 80px; }
+.head { display: flex; align-items: center; margin-bottom: 36px; padding-bottom: 14px; border-bottom: 2px solid var(--tone); }
+.head .no { font: .65rem/1 var(--mono); letter-spacing: .12em; color: var(--tone-2); min-width: 28px; margin-right: 14px; }
+.head .aside { margin-left: auto; font: .68rem/1.4 var(--mono); color: var(--ink-3); letter-spacing: .03em; }
+h2 { font-family: var(--serif); font-weight: 700; font-size: 1.65rem; line-height: 1.3; margin: 0; color: var(--tone); }
+.sub { font: .65rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 2px; }
+.sub ~ .sub { margin-top: 34px; }
+
+/* education / experience */
+.edu { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.edu:last-of-type, .edu.last { border-bottom: 0; }
+.when { font: .75rem/1.5 var(--mono); letter-spacing: .04em; color: var(--ink-3); padding-top: 3px; }
+.edu-title { font-family: var(--serif); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+.edu-org { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: var(--ink-2); margin-bottom: 4px; }
+.ci { height: 15px; width: auto; flex: none; }
+.edu-note { font: .75rem/1.7 var(--mono); color: var(--ink-3); }
+
+/* publications */
+.pub-year { display: flex; align-items: center; gap: 14px; font: .8rem/1 var(--mono); letter-spacing: .08em; color: var(--tone-2); margin: 34px 0 14px; }
+.pub-year::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.head + .pub-year { margin-top: 0; }
+.pub {
+  border: 1px solid var(--rule); border-left: 4px solid var(--tone);
+  padding: 22px 24px; margin-bottom: 12px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.pub:hover { border-left-color: var(--tone-2); box-shadow: 0 2px 16px rgba(27, 35, 48, .07); }
+.pub-title { font-family: var(--serif); font-size: .96rem; line-height: 1.55; color: var(--ink); margin-bottom: 10px; }
+.pub-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.badge { font: .62rem/1 var(--mono); letter-spacing: .07em; padding: 4px 9px; background: var(--tone); color: #fff; flex: none; }
+.badge.alt { background: var(--tone-2); }
+.badge.q1 { background: transparent; color: var(--tone); border: 1px solid var(--tone); padding: 3px 8px; }
+.badge.if { background: transparent; color: var(--ink-2); border: 1px solid var(--rule-2); padding: 3px 8px; }
+.badge.top { background: #faf4e6; color: #8a6a1f; border: 1px solid #d9c08a; padding: 3px 8px; }
+.pub-authors { font: .75rem/1.6 var(--mono); color: var(--ink-3); margin-top: 6px;  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; }
+.pub-authors .doi { margin-left: auto; white-space: nowrap; }
+.pub-authors b { color: var(--ink); font-weight: 600; }
+.pub-authors a { color: var(--tone-2); text-decoration: none; }
+.pub-authors a:hover { text-decoration: underline; }
+.pub-src i { font-style: italic; color: var(--ink-2); }
+.pub-src { font: .75rem/1.5 var(--mono); color: var(--ink-3); }
+.pub-title a { color: inherit; text-decoration: none; }
+.pub-title a:hover { color: var(--tone-2); text-decoration: underline; text-underline-offset: 3px; }
+.pub-src abbr { text-decoration: none; cursor: help; }
+.pub-src b { color: var(--ink-2); font-weight: 400; }
+
+/* projects */
+.proj { display: grid; grid-template-columns: 200px 1fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.proj:last-child { border-bottom: 0; }
+.proj .when { margin-bottom: 8px; padding-top: 0; }
+.agency {
+  display: inline-block;
+  font: .67rem/1.5 var(--mono); letter-spacing: .04em; color: var(--tone);
+  background: var(--wash); border: 1px solid var(--rule-2); padding: 3px 9px;
+}
+.proj-title { font-family: var(--serif); font-weight: 700; font-size: 1rem; line-height: 1.45; color: var(--ink); margin-bottom: 8px; }
+.proj-desc { font-size: .85rem; line-height: 1.9; color: var(--ink-2); }
+.proj-points { list-style: none; margin: 0; padding: 0; }
+.proj-points li { position: relative; padding-left: 16px; font-size: .85rem; line-height: 1.8; color: var(--ink-2); margin-bottom: 3px; }
+.proj-points li::before { content: "–"; position: absolute; left: 0; color: var(--tone-2); }
+
+/* awards */
+.award { display: grid; grid-template-columns: 52px 1fr auto; gap: 20px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.award:last-child { border-bottom: 0; }
+.award-year { font: .72rem/1.5 var(--mono); letter-spacing: .04em; color: var(--tone-2); }
+.award-name { font-size: .88rem; font-weight: 400; line-height: 1.5; color: var(--ink); }
+.award-org { font: .7rem/1.5 var(--mono); color: var(--ink-3); text-align: right; white-space: nowrap; }
+.news-link { color: var(--ink); text-decoration: none; }
+.news-link:hover { color: var(--tone-2); text-decoration: underline; text-underline-offset: 3px; }
+.news-tag { margin-left: 6px; font: .62rem/1 var(--mono); letter-spacing: .06em; color: var(--tone-2); border: 1px solid var(--rule-2); padding: 2px 6px; vertical-align: 1px; }
+
+footer { border-top: 1px solid var(--rule); }
+.foot { max-width: var(--wrap); margin: 0 auto; padding: 26px var(--pad) 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: .68rem/1.6 var(--mono); color: var(--ink-3); }
+
+/* ── small screens ── */
+@media (max-width: 900px) {
+  :root { --pad: 32px; }
+  .menu { display: none; }
+  .hero { grid-template-columns: 200px 1fr; gap: 44px; }
+}
+@media (max-width: 680px) {
+  :root { --pad: 16px; }
+  html { font-size: 16px; }
+  .hero { grid-template-columns: 1fr; gap: 24px; padding-top: 88px; padding-bottom: 56px; }
+  .portrait { width: 170px; }
+  .bio br { display: none; }
+  .head { flex-wrap: wrap; }
+  .head .aside { margin-left: 0; width: 100%; margin-top: 8px; }
+  .edu, .proj { grid-template-columns: 1fr; gap: 6px; }
+  .award { grid-template-columns: 44px 1fr; }
+  .award-org { grid-column: 2; text-align: left; white-space: normal; }
+  .pub { padding: 18px 16px; }
+  section { margin-bottom: 64px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#top"><span lang="ko">박태현</span><span lang="en">Taehyun Park</span></a>
+    <div class="topbar-right">
+      <nav class="menu" aria-label="Sections">
+        <a href="#education"><span lang="ko">학력</span><span lang="en">Education</span></a>
+        <a href="#experience"><span lang="ko">경력</span><span lang="en">Experience</span></a>
+        <a href="#publications"><span lang="ko">논문</span><span lang="en">Publications</span></a>
+        <a href="#projects"><span lang="ko">연구</span><span lang="en">Projects</span></a>
+        <a href="#awards"><span lang="ko">수상</span><span lang="en">Awards</span></a>
+        <a href="#news"><span lang="ko">언론</span><span lang="en">News</span></a>
+        <a href="#patents"><span lang="ko">지식재산권</span><span lang="en">IP</span></a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-set-lang="ko" aria-pressed="true">KO</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <figure class="portrait">
+    <img src="photo.jpg" alt="박태현 Taehyun Park">
+  </figure>
+
+  <div>
+    <div class="affils">
+      <span class="affil">
+        <span lang="ko">한국전자통신연구원 (ETRI)<span class="dim">석사후연수연구원</span></span>
+        <span lang="en">Post-Master's Researcher, ETRI</span>
+      </span>
+    </div>
+
+    <h1><span lang="ko">박태현</span><span lang="en">Taehyun Park</span></h1>
+    <p class="byline"><span lang="ko">Taehyun Park · 공학석사</span><span lang="en">박태현 · M.S. in Computer Engineering</span></p>
+    <div class="hr"></div>
+
+    <p class="bio" lang="ko">생성형 AI와 LLM으로 산업 현장의 데이터를 <br>믿을 수 있는 예측과 의사결정으로 바꿉니다.</p>
+    <p class="bio" lang="en">With generative AI and LLMs, I turn industrial field data <br>into trustworthy predictions and decisions.</p>
+
+    <p class="interests-label"><span lang="ko">연구 관심사</span><span lang="en">Current Interests</span></p>
+    <ul class="interests" lang="ko">
+      <li><b>LLM 에이전트</b> — RAG·지식그래프·LoRA 파인튜닝 기반 도메인 특화 에이전트</li>
+      <li><b>생성모델 기반 데이터 생성</b> — 물리 법칙을 따르는 시계열 데이터 증강</li>
+      <li><b>현장 시계열 예측·최적화</b> — 센서 데이터 예측과 설비 운전 최적화</li>
+    </ul>
+    <ul class="interests" lang="en">
+      <li><b>LLM agents</b> — domain-specific agents with RAG, knowledge graphs and LoRA fine-tuning</li>
+      <li><b>Generative data synthesis</b> — physics-consistent time-series augmentation</li>
+      <li><b>Field forecasting &amp; optimization</b> — sensor forecasting for equipment operation</li>
+    </ul>
+
+    <ul class="keywords">
+      <li>Time Series</li>
+      <li>Generative AI</li>
+      <li>Diffusion Models</li>
+      <li>Data Augmentation</li>
+      <li>Smart Aquaculture</li>
+      <li>Semiconductor CMP</li>
+      <li>RAG · LLM Agents</li>
+    </ul>
+
+    <dl class="contacts">
+      <dt>Email</dt><dd><a href="mailto:toddpk@etri.re.kr">toddpk@etri.re.kr</a></dd>
+      <dt>Gmail</dt><dd><a href="mailto:pth0325@gmail.com">pth0325@gmail.com</a></dd>
+    </dl>
+
+    <div class="buttons">
+      <a class="btn" href="https://github.com/toddpk">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.160.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.240-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://ksp.etri.re.kr/ksp/user/a0f68599-1eb7-4576-9bcc-e1235f32050a"><span lang="ko">ETRI KSP (석사후연수연구원)</span><span lang="en">ETRI KSP (Post-Master's Researcher)</span></a>
+      <a class="btn" href="https://ksp.etri.re.kr/ksp/user/a979c57c-78ee-4569-8a2b-47d333183a35"><span lang="ko">ETRI KSP (위촉연구원)</span><span lang="en">ETRI KSP (Research Assistant)</span></a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- 01 Education -->
+  <section id="education">
+    <div class="head">
+      <span class="no">01</span>
+      <h2><span lang="ko">학력</span><span lang="en">Education</span></h2>
+    </div>
+
+    <div class="edu">
+      <div class="when">2024.09 — 2026.08</div>
+      <div>
+        <p class="edu-title"><span lang="ko">공학석사 — 컴퓨터공학</span><span lang="en">M.S. — Computer Engineering</span></p>
+        <p class="edu-org"><span lang="ko">한밭대학교 대학원 컴퓨터공학과</span><span lang="en">Graduate School, Hanbat National University</span></p>
+        <p class="edu-note">GPA 4.38 / 4.5 &nbsp;·&nbsp; <span lang="ko">지도교수: 이현빈</span><span lang="en">Advisor: Prof. Hyunbean Yi</span><br><span lang="ko">학위논문: </span><span lang="en">Thesis: </span>Water Quality Imputation and Forecasting in Flow-Through Aquaculture Using an Environment-Conditioned Generative Model</p>
+      </div>
+    </div>
+    <div class="edu last">
+      <div class="when">2018.03 — 2024.08</div>
+      <div>
+        <p class="edu-title"><span lang="ko">공학사 — 컴퓨터공학</span><span lang="en">B.S. — Computer Engineering</span></p>
+        <p class="edu-org"><span lang="ko">한밭대학교 컴퓨터공학과</span><span lang="en">Hanbat National University</span></p>
+        <p class="edu-note">GPA 3.27 / 4.5</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Experience -->
+  <section id="experience">
+    <div class="head">
+      <span class="no">02</span>
+      <h2><span lang="ko">경력</span><span lang="en">Experience</span></h2>
+    </div>
+
+    <div class="edu">
+      <div class="when">2026.08 — <span lang="ko">현재</span><span lang="en">present</span></div>
+      <div>
+        <p class="edu-title"><span lang="ko">석사후연수연구원</span><span lang="en">Post-Master's Researcher</span></p>
+        <p class="edu-org"><img class="ci" src="etri.png" alt="ETRI"><span lang="ko">한국전자통신연구원 (ETRI)</span><span lang="en">ETRI</span></p>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="when">2024.09 — 2026.08</div>
+      <div>
+        <p class="edu-title"><span lang="ko">위촉연구원</span><span lang="en">Research Assistant</span></p>
+        <p class="edu-org"><img class="ci" src="etri.png" alt="ETRI"><span lang="ko">한국전자통신연구원 (ETRI)</span><span lang="en">ETRI</span></p>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="when">2024.01 — 2024.02</div>
+      <div>
+        <p class="edu-title"><span lang="ko">인턴</span><span lang="en">Intern</span></p>
+        <p class="edu-org"><img class="ci" src="nexensor.svg" alt="Nexensor"><span lang="ko">넥센서 (Nexensor)</span><span lang="en">Nexensor</span></p>
+      </div>
+    </div>
+    <div class="edu last">
+      <div class="when">2023.07 — 2023.08</div>
+      <div>
+        <p class="edu-title"><span lang="ko">연구연수생</span><span lang="en">Research Intern</span></p>
+        <p class="edu-org"><img class="ci" src="etri.png" alt="ETRI"><span lang="ko">한국전자통신연구원 (ETRI)</span><span lang="en">ETRI</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Publications -->
+  <section id="publications">
+    <div class="head">
+      <span class="no">03</span>
+      <h2><span lang="ko">논문</span><span lang="en">Publications</span></h2>
+      <span class="aside"><span lang="ko">* 교신저자 · IF·순위는 JCR 기준</span><span lang="en">* Corresponding author · IF and rank per JCR</span></span>
+    </div>
+
+    <p class="pub-year">2026</p>
+    <article class="pub">
+      <p class="pub-title"><a href="https://doi.org/10.1016/j.csite.2026.108703">Systematic evaluation of exogenous weather-conditioned generative augmentation for greenhouse microclimate time series</a></p>
+      <div class="pub-meta">
+        <span class="badge">SCIE</span><span class="badge if">IF 6.6</span>
+        <span class="pub-src"><i>Case Studies in Thermal Engineering</i>, Vol. 88, 108703, 2026</span>
+      </div>
+      <p class="pub-authors"><span>Shin, H., <b>Park, T.</b></span><a class="doi" href="https://doi.org/10.1016/j.csite.2026.108703">doi:10.1016/j.csite.2026.108703</a></p>
+    </article>
+
+    <article class="pub">
+      <p class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2026.3710824">CausalOpsBench: A Reproducible Interventional-Replay Benchmark for Topology-Aware Operational Incident Response</a></p>
+      <div class="pub-meta">
+        <span class="badge">SCIE</span><span class="badge if">IF 4.2</span>
+        <span class="pub-src"><i>IEEE Access</i>, Vol. 14, pp. 107820–107838, 2026</span>
+      </div>
+      <p class="pub-authors"><span>Jang, S., <b>Park, T.</b>, Yi, H., Choi, C.</span><a class="doi" href="https://doi.org/10.1109/ACCESS.2026.3710824">doi:10.1109/ACCESS.2026.3710824</a></p>
+    </article>
+
+    <article class="pub">
+      <p class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2026.3704294">MAD-FORCE: Targeting High-Breakdown Streaming Robust Correlation With Optional Drift Handling</a></p>
+      <div class="pub-meta">
+        <span class="badge">SCIE</span><span class="badge if">IF 4.2</span>
+        <span class="pub-src"><i>IEEE Access</i>, Vol. 14, pp. 108350–108369, 2026</span>
+      </div>
+      <p class="pub-authors"><span>Jang, S., <b>Park, T.</b>, Yi, H., Choi, C.</span><a class="doi" href="https://doi.org/10.1109/ACCESS.2026.3704294">doi:10.1109/ACCESS.2026.3704294</a></p>
+    </article>
+
+    <p class="pub-year">2025</p>
+    <article class="pub">
+      <p class="pub-title"><a href="https://doi.org/10.1016/j.ijepes.2025.111050">Applicability evaluation of the PID controlled water pump for flow-through aquaculture systems considering tidal variations</a></p>
+      <div class="pub-meta">
+        <span class="badge">SCIE</span><span class="badge if">IF 5.3</span>
+        <span class="pub-src"><i>International Journal of Electrical Power &amp; Energy Systems</i>, Vol. 171, 111050, 2025</span>
+      </div>
+      <p class="pub-authors"><span><b>Park, T.</b>, Shin, H.*, Jo, S.-K., Jung, J. Y.</span><a class="doi" href="https://doi.org/10.1016/j.ijepes.2025.111050">doi:10.1016/j.ijepes.2025.111050</a></p>
+    </article>
+
+    <article class="pub">
+      <p class="pub-title"><a href="https://doi.org/10.1016/j.aquaculture.2025.742303">Enhancing flow-through aquaculture system monitoring: A comparative study of machine learning algorithms for missing-data imputation</a></p>
+      <div class="pub-meta">
+        <span class="badge">SCIE</span><span class="badge if">IF 4.4</span><span class="badge top"><span lang="ko">JCR 상위 10%</span><span lang="en">JCR Top 10%</span></span>
+        <span class="pub-src"><i>Aquaculture</i>, Vol. 601, 742303, 2025</span>
+      </div>
+      <p class="pub-authors"><span>Shin, H.*, <b>Park, T.</b>, Jo, S.-K., Jung, J. Y.</span><a class="doi" href="https://doi.org/10.1016/j.aquaculture.2025.742303">doi:10.1016/j.aquaculture.2025.742303</a></p>
+    </article>
+  </section>
+
+  <!-- 04 Projects -->
+  <section id="projects">
+    <div class="head">
+      <span class="no">04</span>
+      <h2><span lang="ko">연구 프로젝트</span><span lang="en">Research Projects</span></h2>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2026.08 — 2026.11</div>
+        <span class="agency"><span lang="ko">국립수산과학원</span><span lang="en">National Institute of Fisheries Science</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">해상가두리 생산 최적화 모델 및 통합관리 시스템 개발</span><span lang="en">Production Optimization Models and an Integrated Management System for Offshore Sea-Cage Farms</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>해상가두리 양식장 데이터 표준화 및 수집 체계 설계</li>
+          <li>성장 예측·어류 행동 분석·최적 급이 AI 모델 개발</li>
+          <li>데이터 관리부터 AI 분석·모니터링·제어까지 잇는 통합관리 시스템 설계</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>Standardized data collection for sea-cage farms</li>
+          <li>AI models for growth prediction, fish-behavior analysis and optimal feeding</li>
+          <li>Integrated management system linking data, AI analysis, monitoring and control</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2026.05 — 2026.10</div>
+        <span class="agency"><span lang="ko">한국어촌어항공단</span><span lang="en">Korea Fisheries Infrastructure Public Agency</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">먹이반응 분석 기반 적응형 급이와 디지털 트윈 순환학습을 결합한 RAS 특화 급이 최적화</span><span lang="en">RAS-Specific Feeding Optimization Combining Feeding-Response-Based Adaptive Feeding with Digital-Twin Cyclic Learning</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>대서양 연어 순환여과식 양식(RAS)용 AI 비전·적응형 급이·디지털트윈 통합 플랫폼 개발</li>
+          <li>먹이반응 기반 적응형 급이 제어로 사료 효율 향상 및 수질 부하 저감</li>
+          <li>2026 스마트양식 도전해(海) 경진대회 대상(해양수산부장관상) 수상</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>AI-vision, adaptive-feeding and digital-twin platform for Atlantic salmon RAS</li>
+          <li>Feeding-response-based adaptive control for higher feed efficiency and lower water-quality load</li>
+          <li>Grand Prize (Minister of Oceans and Fisheries Award), 2026 Smart Aquaculture Challenge</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2026.05 — <span lang="ko">현재</span><span lang="en">present</span></div>
+        <span class="agency"><span lang="ko">교육부</span><span lang="en">Ministry of Education</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">반도체 CMP 공정용 고선택비·고평탄화 일액형 슬러리 소재 및 AI 공정 제어 시스템 적용에 관한 연구</span><span lang="en">One-Component High-Selectivity, High-Planarization CMP Slurry and Its Application to AI-Based Process Control</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>반도체 CMP 공정용 일액형 슬러리 소재 및 AI 공정 제어 시스템 개발</li>
+          <li>공정 센서 데이터 기반 연마율(MRR) 예측 모델 개발</li>
+          <li>생성형 AI 기반 공정 데이터 증강</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>One-component CMP slurry materials and an AI process-control system</li>
+          <li>Material-removal-rate (MRR) prediction from process sensor data</li>
+          <li>Generative-AI augmentation of process data</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2025.01 — 2026.08</div>
+        <span class="agency"><span lang="ko">과학기술정보통신부</span><span lang="en">Ministry of Science and ICT</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">농식품분야 메타버스기반 기술 실증 지원</span><span lang="en">Metaverse-Based Technology Demonstration for the Agri-Food Sector</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>소스(sauce) 맛 품질 예측을 위한 물리정보 기반 시뮬레이션 기술 개발</li>
+          <li>시뮬레이션·추론 API 개발 및 클라우드(Kubernetes) 배포</li>
+          <li>농식품 메타버스 서비스 연계 실증</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>Physics-informed simulation for predicting sauce taste quality</li>
+          <li>Simulation and inference APIs deployed on the cloud (Kubernetes)</li>
+          <li>Demonstration in an agri-food metaverse service</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2024.09 — <span lang="ko">현재</span><span lang="en">present</span></div>
+        <span class="agency"><span lang="ko">해양수산부</span><span lang="en">Ministry of Oceans and Fisheries</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">유수식 스마트양식 시스템 개발</span><span lang="en">Development of a Flow-Through Smart Aquaculture System</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>수질·생장·에너지 데이터 통합 스마트양식 플랫폼 개발</li>
+          <li>수질 예측 및 펌프 에너지 최적화 기술 개발, 기업 기술이전</li>
+          <li>운영 매뉴얼·지식그래프 기반 LLM AI 에이전트 개발</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>Smart-aquaculture platform integrating water-quality, growth and energy data</li>
+          <li>Water-quality forecasting and pump-energy optimization, transferred to industry</li>
+          <li>LLM-based AI agent built on operation manuals and a knowledge graph</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2024.09 — 2024.12</div>
+        <span class="agency"><span lang="ko">농림축산식품부</span><span lang="en">Ministry of Agriculture, Food and Rural Affairs</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">가축질병 실시간 예찰 기술 및 지능형 방역/위생 시스템 개발</span><span lang="en">Real-Time Livestock Disease Surveillance and Intelligent Biosecurity System</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>행동 영상·소리 분석 기반 가축질병 이상징후 감지 시스템 개발</li>
+          <li>지능형 방역·위생 시스템 연계 및 기업 기술이전</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>Livestock-disease anomaly detection from behavior video and sound</li>
+          <li>Integration with an intelligent biosecurity system; technology transfer to industry</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div>
+        <div class="when">2023.07 — 2023.08</div>
+        <span class="agency"><span lang="ko">농림축산식품부</span><span lang="en">Ministry of Agriculture, Food and Rural Affairs</span></span>
+      </div>
+      <div>
+        <p class="proj-title"><span lang="ko">딥러닝 기반 1종 가축 전염병 모니터링·추적 시스템 연구</span><span lang="en">Deep-Learning-Based Monitoring and Tracing System for Class 1 Livestock Epidemics</span></p>
+        <ul class="proj-points" lang="ko">
+          <li>축산시설 출입 객체(사람·차량) 탐지 및 차량 번호판 인식 모델 개발</li>
+          <li>엣지 디바이스(NVIDIA Jetson) 실시간 추론 검증</li>
+        </ul>
+        <ul class="proj-points" lang="en">
+          <li>Person/vehicle detection and license-plate recognition at livestock facilities</li>
+          <li>Real-time inference verified on edge devices (NVIDIA Jetson)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Awards -->
+  <section id="awards">
+    <div class="head">
+      <span class="no">05</span>
+      <h2><span lang="ko">수상</span><span lang="en">Awards</span></h2>
+    </div>
+
+    <div class="award">
+      <div class="award-year">2026</div>
+      <div class="award-name"><span lang="ko">대상, 2026 스마트양식 도전해(海) 경진대회</span><span lang="en">Grand Prize, 2026 Smart Aquaculture Challenge</span></div>
+      <div class="award-org"><span lang="ko">해양수산부장관</span><span lang="en">Minister of Oceans and Fisheries</span></div>
+    </div>
+    <div class="award">
+      <div class="award-year">2025</div>
+      <div class="award-name"><span lang="ko">우수상, 2025 스마트양식 도전해(海) 경진대회</span><span lang="en">Excellence Award, 2025 Smart Aquaculture Challenge</span></div>
+      <div class="award-org"><span lang="ko">한국어촌어항공단</span><span lang="en">Korea Fisheries Infrastructure Public Agency</span></div>
+    </div>
+    <div class="award">
+      <div class="award-year">2021</div>
+      <div class="award-name"><span lang="ko">우수상, 2021 군장병 공개SW 온라인 해커톤</span><span lang="en">Excellence Award, 2021 Open-Source SW Online Hackathon for Service Members</span></div>
+      <div class="award-org"><span lang="ko">공군참모총장</span><span lang="en">ROK Air Force Chief of Staff</span></div>
+    </div>
+  </section>
+
+  <!-- 06 News -->
+  <section id="news">
+    <div class="head">
+      <span class="no">06</span>
+      <h2><span lang="ko">언론 보도</span><span lang="en">News</span></h2>
+    </div>
+
+    <div class="award">
+      <div class="award-year">2026</div>
+      <div class="award-name"><a class="news-link" href="https://www.donga.com/news/Economy/article/all/20261030/134941677/2">서울광장에 열린 바다… 스마트 수조- QR코드 이력제 ‘엄지 척’</a> <span class="news-tag"><span lang="ko">인터뷰</span><span lang="en">Interview</span></span></div>
+      <div class="award-org"><span lang="ko">동아일보</span><span lang="en">The Dong-A Ilbo</span> · 2026.10.31</div>
+    </div>
+  </section>
+
+  <!-- 07 Intellectual Property (to be filled) -->
+  <section id="patents">
+    <div class="head">
+      <span class="no">07</span>
+      <h2><span lang="ko">지식재산권</span><span lang="en">Intellectual Property</span></h2>
+    </div>
+    <!-- 예시 행 (채울 때 복사해서 사용)
+    <div class="award">
+      <div class="award-year">KR</div>
+      <div class="award-name">발명의 명칭</div>
+      <div class="award-org">출원 YYYY.MM.DD · 출원번호</div>
+    </div>
+    -->
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <span>© 2026 <span lang="ko">박태현</span><span lang="en">Taehyun Park</span></span>
+    <span><span lang="ko">최종 수정 2026.11.07</span><span lang="en">Last updated 2026-11-07</span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var KEY = 'site-lang';
+  function apply(lang) {
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.setLang === lang));
+    });
+  }
+  function initial() {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'ko' || q === 'en') return q;
+    try { var s = localStorage.getItem(KEY); if (s === 'ko' || s === 'en') return s; } catch (e) {}
+    return (navigator.language || 'ko').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en';
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var lang = b.dataset.setLang;
+      apply(lang);
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    });
+  });
+  apply(initial());
+
+  // in-page links scroll smoothly without adding #hash to the address bar
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var target = id ? document.getElementById(id) : null;
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // a reload always starts at the top
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo(0, 0);
+})();
+</script>
+</body>
+</html>
